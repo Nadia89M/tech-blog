@@ -139,9 +139,27 @@ add_action( 'widgets_init', 'tech_blog_widgets_init' );
  */
 function tech_blog_scripts() {
 	wp_enqueue_style( 'tech-blog-style', get_stylesheet_uri(), array(), _S_VERSION );
+	wp_enqueue_style( 'tech-blog-animate', get_theme_file_uri('/assets/css/animate.min.css'), array(), _S_VERSION );
+	wp_enqueue_style( 'tech-blog-bootstrap', get_theme_file_uri('/assets/css/bootstrap.min.css'), array(), _S_VERSION );
+	wp_enqueue_style( 'tech-blog-font-awesome', get_theme_file_uri('/assets/css/font-awesome.min.css'), array(), _S_VERSION );
+	wp_enqueue_style( 'tech-blog-magnific-popup', get_theme_file_uri('/assets/css/magnific-popup.css'), array(), _S_VERSION );
+	wp_enqueue_style( 'tech-blog-slick', get_theme_file_uri('/assets/css/slick.css'), array(), _S_VERSION );
+	wp_enqueue_style( 'tech-blog-nice-select', get_theme_file_uri('/assets/css/jquery-nice-select.min.css'), array(), _S_VERSION );
+	wp_enqueue_style( 'tech-blog-style', get_theme_file_uri('/assets/css/style.css'), array(), _S_VERSION );
+
 	wp_style_add_data( 'tech-blog-style', 'rtl', 'replace' );
 
 	wp_enqueue_script( 'tech-blog-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
+	wp_enqueue_script( 'tech-blog-modernizr', get_template_directory_uri() . '/assets/js/vendor/modernizr-3.6.0.min.js', array(), _S_VERSION, true );
+	wp_enqueue_script( 'tech-blog-jquery', get_template_directory_uri() . '/assets/js/vendor/jquery-1.12.4.min.js', array(), _S_VERSION, true );
+	wp_enqueue_script( 'tech-blog-bootstrap', get_template_directory_uri() . '/assets/js/bootstrap.min.js', array(), _S_VERSION, true );
+	wp_enqueue_script( 'tech-blog-popper', get_template_directory_uri() . '/assets/js/popper.min.js', array(), _S_VERSION, true );
+	wp_enqueue_script( 'tech-blog-slick', get_template_directory_uri() . '/assets/js/slick.min.js', array(), _S_VERSION, true );
+	wp_enqueue_script( 'tech-blog-imagesloaded', get_template_directory_uri() . '/assets/js/imagesloaded.pkgd.min.js', array(), _S_VERSION, true );
+	wp_enqueue_script( 'tech-blog-isotope', get_template_directory_uri() . '/assets/js/isotope.pkgd.min.js', array(), _S_VERSION, true );
+	wp_enqueue_script( 'tech-blog-magnific-popup', get_template_directory_uri() . '/assets/js/jquery.magnific-popup.min.js', array(), _S_VERSION, true );
+	wp_enqueue_script( 'tech-blog-nice-select', get_template_directory_uri() . '/assets/js/jquery.nice-select.min.js', array(), _S_VERSION, true );
+	wp_enqueue_script( 'tech-blog-main', get_template_directory_uri() . '/assets/js/main.js', array(), _S_VERSION, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
