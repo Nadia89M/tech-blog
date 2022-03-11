@@ -138,7 +138,6 @@ add_action( 'widgets_init', 'tech_blog_widgets_init' );
  * Enqueue scripts and styles.
  */
 function tech_blog_scripts() {
-	wp_enqueue_style( 'tech-blog-style', get_stylesheet_uri(), array(), _S_VERSION );
 	wp_enqueue_style( 'tech-blog-animate', get_theme_file_uri('/assets/css/animate.min.css'), array(), _S_VERSION );
 	wp_enqueue_style( 'tech-blog-bootstrap', get_theme_file_uri('/assets/css/bootstrap.min.css'), array(), _S_VERSION );
 	wp_enqueue_style( 'tech-blog-font-awesome', get_theme_file_uri('/assets/css/font-awesome.min.css'), array(), _S_VERSION );
@@ -146,6 +145,7 @@ function tech_blog_scripts() {
 	wp_enqueue_style( 'tech-blog-slick', get_theme_file_uri('/assets/css/slick.css'), array(), _S_VERSION );
 	wp_enqueue_style( 'tech-blog-nice-select', get_theme_file_uri('/assets/css/jquery-nice-select.min.css'), array(), _S_VERSION );
 	wp_enqueue_style( 'tech-blog-style', get_theme_file_uri('/assets/css/style.css'), array(), _S_VERSION );
+	wp_enqueue_style( 'tech-blog-style', get_stylesheet_uri(), array(), _S_VERSION );
 
 	wp_style_add_data( 'tech-blog-style', 'rtl', 'replace' );
 

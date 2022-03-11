@@ -409,6 +409,10 @@ header {
     padding: 35px 0;
 }
 
+header .custom-logo-link img {
+    width: 50px;
+}
+
 header .header-right {
     display: -webkit-box;
     display: -ms-flexbox;
