@@ -23,37 +23,56 @@
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 <div id="page" class="site">
-	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'tech-blog' ); ?></a>
+		<!--====== Header part start ======-->
+	<header class="sticky-header">
+		<div class="container-fluid">
+			<div class="d-flex align-items-center justify-content-between">
+				<div class="site-logo">
+					<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php the_custom_logo() ?></a>
+				</div>
+				<div class="header-right">
+					<div class="search-area">
+						<a href="javascript:void(0)" class="search-btn"><i class="fas fa-search"></i></a>
+						<div class="search-form">
+							<a href="#" class="search-close"><i class="fal fa-times"></i></a>
+							<form action="#">
+								<input type="search" placeholder="Type here to search">
+							</form>
+							<div class="search-overly"></div>
+						</div>
+					</div>
+					<div class="offcanvas-panel">
+						<a href="javascript:void(0)" class="panel-btn">
+							<span>
+								<span></span>
+								<span></span>
+								<span></span>
+							</span>
+						</a>
+						<div class="panel-overly"></div>
+						<div class="offcanvas-items">
+							<!-- Navbar Toggler -->
+							<a href="javascript:void(0)" class="panel-close">
+								Back <i class="fa fa-angle-right" aria-hidden="true"></i>
+							</a>
 
-	<header id="masthead" class="site-header">
-		<div class="site-branding">
-			<?php
-			the_custom_logo();
-			if ( is_front_page() && is_home() ) :
-				?>
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-				<?php
-			else :
-				?>
-				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-				<?php
-			endif;
-			$tech_blog_description = get_bloginfo( 'description', 'display' );
-			if ( $tech_blog_description || is_customize_preview() ) :
-				?>
-				<p class="site-description"><?php echo $tech_blog_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
-			<?php endif; ?>
-		</div><!-- .site-branding -->
+							<ul class="offcanvas-menu">
+								<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>">Home</a></li>
+								<li><a href="<?php echo esc_url( site_url('/about') ); ?>">About</a></li>
+								<li><a href="<?php echo esc_url( site_url('/contact') ); ?>">Contact</a></li>
+							</ul>
 
-		<nav id="site-navigation" class="main-navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'tech-blog' ); ?></button>
-			<?php
-			wp_nav_menu(
-				array(
-					'theme_location' => 'menu-1',
-					'menu_id'        => 'primary-menu',
-				)
-			);
-			?>
-		</nav><!-- #site-navigation -->
-	</header><!-- #masthead -->
+							<div class="social-icons">
+								<ul>
+									<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+									<li><a href="#"><i class="fab fa-instagram"></i></a></li>
+									<li><a href="#"><i class="fab fa-twitter"></i></a></li>
+									<li><a href="#"><i class="fab fa-youtube"></i></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
