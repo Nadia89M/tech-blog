@@ -40,22 +40,28 @@ $latestPosts = new WP_Query(array(
             $bannerQuery->the_post();  ?>
             <div class="sinlge-banner">
                 <div class="banner-wrapper">
-                    <div class="banner-bg" style="background-image: url(assets/img/banner/01.jpg);"></div>
+                    <?php $url = wp_get_attachment_url(get_post_thumbnail_id($post->ID), 'thumbnail'); ?>
+                    <div class="banner-bg" style="background-image: url(<?php echo $url ?>);"></div>
                     <div class="banner-content" data-animation="fadeInUp" data-delay="0.3s">
                         <h3 class="title" data-animation="fadeInUp" data-delay="0.6s">
-                            <a href="#">
-                                The Olivier da Costa restaurant experience in Lisbon
+                            <a href="<?php the_permalink(); ?>">
+                                <?php the_title(); ?>
                             </a>
                         </h3>
                         <ul class="meta" data-animation="fadeInUp" data-delay="0.8s">
-                            <li><a href="#">By - Zhon Smith</a></li>
-                            <li><a href="#">Travel,</a><a href="#">Design,</a><a href="#">Nature</a></li>
+                            <li>
+                                <?php $post_id = get_the_ID();
+                                $post_categories = wp_get_post_categories($post_id);
+                                foreach ($post_categories as $c) {
+                                    $cat = get_category($c);
+                                ?>
+                                    <a href="/<?php echo $cat->slug ?>"><?php echo $cat->name ?></a>
+                                <?php } ?></li>
                         </ul>
                         <p data-animation="fadeInUp" data-delay="1s">
-                            When it comes to creating is a website for your busin an attractive design will only get you
-                            far. With people increasingly using their tablets and smartphones and shop online,...
+                            <?php the_excerpt(); ?>
                         </p>
-                        <a href="blog-details.html" class="read-more" data-animation="fadeInUp" data-delay="1.2s">
+                        <a href="<?php the_permalink(); ?>" class="read-more" data-animation="fadeInUp" data-delay="1.2s">
                             Read More <i class="fas fa-long-arrow-right"></i>
                         </a>
                     </div>
