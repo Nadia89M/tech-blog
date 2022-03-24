@@ -27,31 +27,33 @@ $latestPosts = new WP_Query(array(
                     <div class="col-xl-4 col-sm-6">
                         <div class="entry-post">
                             <div class="entry-thumbnail">
-                                <img src="assets/img/posts/01.jpg" alt="Image">
+                                <?php $url = wp_get_attachment_url(get_post_thumbnail_id($post->ID), 'thumbnail'); ?>
+                                <img src="<?php echo $url ?>" alt="Image" />
                             </div>
                             <div class="entry-content">
                                 <h4 class="title">
                                     <a href="blog-details.html">
-                                        Best Wordpress Theme of 2018
+                                        <?php the_title(); ?>
                                     </a>
                                 </h4>
                                 <ul class="post-meta">
                                     <li class="date">
-                                        <a href="#">18-04-21</a>
+                                        <?php the_date(); ?>
                                     </li>
                                     <li class="categories">
-                                        <a href="#">Design,</a>
-                                        <a href="#">Travel,</a>
-                                        <a href="#">photography,</a>
-                                        <a href="#">Nature</a>
+                                        <?php $post_id = get_the_ID();
+                                        $post_categories = wp_get_post_categories($post_id);
+                                        foreach ($post_categories as $c) {
+                                            $cat = get_category($c);
+                                        ?>
+                                            <a href="/<?php echo $cat->slug ?>"><?php echo $cat->name ?></a>
+                                        <?php } ?>
                                     </li>
                                 </ul>
                                 <p>
-                                    When it comes to creating is a website for your business, an attractive design
-                                    will only get you far. With people increasingly using their tablets and
-                                    smartphones and shop online,...
+                                    <?php the_excerpt(); ?>
                                 </p>
-                                <a href="blog-details.html" class="read-more">
+                                <a href="<?php the_permalink(); ?>" class="read-more">
                                     Read More <i class="fas fa-long-arrow-right"></i>
                                 </a>
                             </div>
