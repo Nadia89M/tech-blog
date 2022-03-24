@@ -59,9 +59,20 @@
 								</a>
 
 								<ul class="offcanvas-menu">
-									<li><a href="<?php echo esc_url(home_url('/')); ?>">Home</a></li>
-									<li><a href="<?php echo esc_url(site_url('/about')); ?>">About</a></li>
-									<li><a href="<?php echo esc_url(site_url('/contact')); ?>">Contact</a></li>
+									<?php
+									$terms = get_terms(array(
+										'taxonomy' => 'category',
+										'hide_empty' => true,
+									));
+									foreach ($terms as $term) {
+										$category_link = get_category_link($term->term_id); ?>
+										<div class="categorie">
+											<li><a href="<?php echo $category_link ?>">
+													<?php echo $term->name ?>
+												</a>
+											</li>
+										</div>
+									<?php } ?>
 								</ul>
 
 								<div class="social-icons">
@@ -78,4 +89,3 @@
 				</div>
 			</div>
 		</header>
-		
