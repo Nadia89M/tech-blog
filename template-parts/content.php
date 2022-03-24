@@ -24,7 +24,7 @@
 							foreach ($post_categories as $c) {
 								$cat = get_category($c);
 							?>
-								<a href="/<?php echo $cat->slug ?>"><?php echo $cat->name ?></a>
+								<a href="/category/<?php echo $cat->slug ?>"><?php echo $cat->name ?></a>
 							<?php } ?>
 						</li>
 					</ul>
