@@ -11,7 +11,7 @@
 $latestPosts = new WP_Query(array(
     'post_type' => 'post',
     'post_status' => 'publish',
-    'posts_per_page' => 9,
+    'posts_per_page' => 6,
     'order' => 'DESC',
     'orderby' => 'ID'
 ));
@@ -21,10 +21,12 @@ $latestPosts = new WP_Query(array(
     <div class="container-fluid">
         <div class="post-area-inner">
             <!-- Entry Post -->
-            <div class="entry-posts clearfix masonary-posts row">
+            <?php $published_posts = wp_count_posts()->publish; ?>
+            <div class="entry-posts clearfix masonary-posts" >
+            <div class="row posts-container" data-posts-num="<?php echo $published_posts ?>">
                 <?php while ($latestPosts->have_posts()) {
                     $latestPosts->the_post(); ?>
-                    <div class="col-xl-4 col-sm-6">
+                    <div class="col-xl-4 col-sm-6" >
                         <div class="entry-post">
                             <div class="entry-thumbnail">
                                 <?php $url = wp_get_attachment_url(get_post_thumbnail_id($post->ID), 'thumbnail'); ?>
@@ -60,9 +62,10 @@ $latestPosts = new WP_Query(array(
                         </div>
                     </div>
                 <?php } ?>
+                </div>
                 <div class="col-12">
                     <div class="text-center">
-                        <a href="#" class="load-more-btn">Load More</a>
+                        <a href="#" id="load-more-btn" class="load-more-btn">Load More</a>
                     </div>
                 </div>
             </div>

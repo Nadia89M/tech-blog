@@ -984,6 +984,10 @@ header.sticky-header.sticky-on {
     padding-left: 8px;
 }
 
+.read-more-btn__hidden {
+    display: none;
+}
+
 .banner-section .banner-nav {
     position: absolute;
     bottom: 40px;
