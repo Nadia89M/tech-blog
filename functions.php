@@ -149,6 +149,8 @@ function tech_blog_scripts() {
 
 	wp_style_add_data( 'tech-blog-style', 'rtl', 'replace' );
 
+	wp_enqueue_script( 'tech-blog-axios', '//cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js', array(), _S_VERSION, true );
+
 	wp_enqueue_script( 'tech-blog-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
 	wp_enqueue_script( 'tech-blog-modernizr', get_template_directory_uri() . '/assets/js/vendor/modernizr-3.6.0.min.js', array(), _S_VERSION, true );
 	wp_enqueue_script( 'tech-blog-jquery', get_template_directory_uri() . '/assets/js/vendor/jquery-1.12.4.min.js', array(), _S_VERSION, true );
@@ -161,11 +163,26 @@ function tech_blog_scripts() {
 	wp_enqueue_script( 'tech-blog-nice-select', get_template_directory_uri() . '/assets/js/jquery.nice-select.min.js', array(), _S_VERSION, true );
 	wp_enqueue_script( 'tech-blog-main', get_template_directory_uri() . '/assets/js/main.js', array(), _S_VERSION, true );
 
+	wp_enqueue_script( 'tech-blog-index', get_template_directory_uri() . '/src/index.js', array(), _S_VERSION, true );
+
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
 add_action( 'wp_enqueue_scripts', 'tech_blog_scripts' );
+
+//Add type module to Js file
+add_filter('script_loader_tag', 'add_type_attribute' , 10, 3);
+
+function add_type_attribute($tag, $handle, $src) {
+    // if not your script, do nothing and return original $tag
+    if ( 'tech-blog-index' !== $handle ) {
+        return $tag;
+    }
+    // change the script tag by adding type="module" and return it.
+    $tag = '<script type="module" src="' . esc_url( $src ) . '"></script>';
+    return $tag;
+}
 
 /**
  * Implement the Custom Header feature.
